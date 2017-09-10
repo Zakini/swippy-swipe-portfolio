@@ -1,2 +1,30 @@
-<h1>index.hbs</h1>
-<p>stuff more</p>
+{{navigation}}
+<div id="info">
+	{{#get "posts" filter="page:true+slug:info" limit=1}}
+		{{#with posts.[0]}}
+			{{> static-page this}}
+		{{/with}}
+	{{/get}}
+</div>
+{{! TODO make sure featured posts appear first in these lists }}
+<div id="videos">
+	{{#get "posts" filter="tag:videos" limit="all"}}
+		{{#foreach posts}}
+			{{> media-item this}}
+		{{/foreach}}
+	{{/get}}
+</div>
+<div id="photos">
+	{{#get "posts" filter="tag:photos" limit="all"}}
+		{{#foreach posts}}
+			{{> media-item this}}
+		{{/foreach}}
+	{{/get}}
+</div>
+<div id="contact">
+	{{#get "posts" filter="page:true+slug:contact" limit=1}}
+		{{#with posts.[0]}}
+			{{> static-page this}}
+		{{/with}}
+	{{/get}}
+</div>
